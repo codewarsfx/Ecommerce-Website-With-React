@@ -1,9 +1,11 @@
-import Directory from "./components/Directory/directoryComponent";
+
+import Home from "./routes/Home/home";
 
 function App() {
   return (
     <div className="App">
-       <Directory/>
+       <Home/>
+      
     </div>
   );
 }
