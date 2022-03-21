@@ -1,8 +1,9 @@
 import {initializeApp} from 'firebase/app'
-
-import {getAuth, GoogleAuthProvider, signInWithPopup,createUserWithEmailAndPassword} from 'firebase/auth'
+import {getAuth, GoogleAuthProvider, signInWithPopup,createUserWithEmailAndPassword,signInWithEmailAndPassword} from 'firebase/auth'
 import {getFirestore,doc,getDoc,setDoc} from 'firebase/firestore'
 
+
+//initialize firebase app
 const firebaseConfigObject = {
   apiKey: "AIzaSyCMJMXdTgfpJXPgxeAHKSbayePL0fkg-TA",
   authDomain: "ecommerce-website-22d83.firebaseapp.com",
@@ -13,21 +14,37 @@ const firebaseConfigObject = {
 };
 
 initializeApp(firebaseConfigObject)
+
+//create firebase instance related to the initalized firebase app 
 export const auth = getAuth()
+export const firestore = getFirestore()
 
+//Define auth providers 
 const provider = new GoogleAuthProvider()
-
 provider.setCustomParameters({
     "prompt": "select_account"
 })
 
 
+//define sign in  and sign up methods
+
+//signinwithgoogleauth
 export const signInWIthGooglePopup = ()=>(signInWithPopup(auth,provider))
 
-export const firestore = getFirestore()
+//sign up with email and password
+export const signUpwithUserNameandPassord= async (email,password)=>{
+ return await createUserWithEmailAndPassword(auth,email,password)
+ 
+}
 
 
+// sign in with email and password
+export const signInUserWithEmailAndPassword = async (email,password)=>{
+  
+ return await signInWithEmailAndPassword(auth,email,password)
+}
 
+//add user to user database when user creates account or authenticates with third party services 
 export const createUserDocument = async (userAccount,otherOptions)=>{
   if(!userAccount) return  
   // get the document reference in the collection
@@ -49,8 +66,4 @@ export const createUserDocument = async (userAccount,otherOptions)=>{
   return userRef
 }
 
-export const signUpwithUserNameandPassord= async (email,password)=>{
-  
- return await createUserWithEmailAndPassword(auth,email,password)
- 
-}
+

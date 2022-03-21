@@ -1,27 +1,9 @@
 import { useReducer } from "react";
 import {signUpwithUserNameandPassord,createUserDocument} from '../../Utils/firebase/firebaseUtils'
+import Button from "../Button/buttonComponent";
 import Input from "../input/inputComponent";
 import './signUpForm.styles.scss'
 
-
-   const reducer = (state,action)=>{
-        switch(action.type) {
-            case "displayName":
-                return {...state,displayName:action.payload}
-                break
-            case "email":
-                return {...state,email:action.payload}
-                break
-            case "password":
-                return {...state,password:action.payload}
-                break
-            case "confirmPassword":
-                return {...state,confirmPassword:action.payload}  
-            default:
-                return state
-                break;
-        }
-    }
     
     const initialState={
         displayName:"",
@@ -29,6 +11,28 @@ import './signUpForm.styles.scss'
         password:"",
         confirmPassword:""
     }
+
+   const reducer = (state,action)=>{
+        switch(action.type) {
+            case "displayName":
+                return {...state,displayName:action.payload}
+               
+            case "email":
+                return {...state,email:action.payload}
+                
+            case "password":
+                return {...state,password:action.payload}
+                
+            case "confirmPassword":
+                return {...state,confirmPassword:action.payload}  
+            case "clear":
+                return initialState
+            default:
+                return state
+                
+        }
+    }
+
 
 const SignUpForm= ()=>{    
     const [state,dispatch] = useReducer(reducer,initialState)
@@ -59,6 +63,9 @@ const SignUpForm= ()=>{
             }
             console.log(error)
         }
+                 dispatch({
+            type:'clear'
+        })
     }
 
 
@@ -71,7 +78,7 @@ const SignUpForm= ()=>{
                 <Input label={'Email'} handleChange={handleChange} name="email" value={email} type="email" required/>
                 <Input label={'password'} handleChange={handleChange} name="password" type="password" value={password} required/>
                 <Input label={'confirmPassword'} handleChange={handleChange} name="confirmPassword" value={confirmPassword} type="password" required/>
-                <button type="submit">Submit</button>
+                <Button>Sign Up</Button>
             </form>  
         </div>
     ) 
