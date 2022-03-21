@@ -52,11 +52,21 @@ const SignInForm= ()=>{
             return
         }
         try{
-            const response = await signInUserWithEmailAndPassword(email,password)
-      
-            console.log(response)
+            await signInUserWithEmailAndPassword(email,password)
         }catch(error){
-            console.log(error)
+        let alertMessage=''
+         switch (error.code) {
+            case "auth/user-not-found" :
+                alertMessage="User doesnt exist"
+                break
+            case "auth/wrong-password" :
+            alertMessage="User password is wrong"
+            break
+             default:
+                 break;   
+         }
+       if(alertMessage) alert(alertMessage);
+         console.log(error)
         }
               dispatch({
             type:'clear'
@@ -72,13 +82,19 @@ const SignInForm= ()=>{
          createUserDocument(response.user)  
       }
       catch(error){
-          if(error.code==="auth/popup-closed-by-user"){
-              alert('please sign into your google account via popup')
+          let alertMessage=''
+        console.log(error.code)
+         switch (error.code) {
+             case "auth/popup-closed-by-user":
+                 alertMessage='please sign into your google account via popup'
+                 break;
+             default:
+                 break;   
+         }
+         if(alertMessage) alert(alertMessage);
+         console.log(error)
           }
-          console.log('an error occured',error )
-      }
     }
-    
     return (
         <div className='sign-in-container'>
             <h2>Already Have an Account? Sign In</h2>

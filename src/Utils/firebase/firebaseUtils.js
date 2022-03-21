@@ -1,5 +1,5 @@
 import {initializeApp} from 'firebase/app'
-import {getAuth, GoogleAuthProvider, signInWithPopup,createUserWithEmailAndPassword,signInWithEmailAndPassword} from 'firebase/auth'
+import {getAuth, GoogleAuthProvider,signInWithPopup,createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,onAuthStateChanged} from 'firebase/auth'
 import {getFirestore,doc,getDoc,setDoc} from 'firebase/firestore'
 
 
@@ -27,7 +27,6 @@ provider.setCustomParameters({
 
 
 //define sign in  and sign up methods
-
 //signinwithgoogleauth
 export const signInWIthGooglePopup = ()=>(signInWithPopup(auth,provider))
 
@@ -40,7 +39,6 @@ export const signUpwithUserNameandPassord= async (email,password)=>{
 
 // sign in with email and password
 export const signInUserWithEmailAndPassword = async (email,password)=>{
-  
  return await signInWithEmailAndPassword(auth,email,password)
 }
 
@@ -61,9 +59,15 @@ export const createUserDocument = async (userAccount,otherOptions)=>{
       createdAt,
       ...otherOptions
     })
-    
   }
   return userRef
 }
 
+export const signUserOut = async ()=>{
+  await signOut(auth)
+}
+
+export const subscribeToFirebaseAuthService = async (callbackFunction)=> {
+ return await onAuthStateChanged(auth,callbackFunction)
+}
 
