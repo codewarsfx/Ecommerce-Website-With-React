@@ -9,12 +9,15 @@ import {BrowserRouter} from 'react-router-dom'
 
 import './index.css';
 import UserProvider from './context/userContext';
+import ShopProvider from './context/shopContext';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
         <UserProvider>
+          <ShopProvider>
           <App />
+          </ShopProvider>
         </UserProvider>
     </BrowserRouter>
   </React.StrictMode>,
