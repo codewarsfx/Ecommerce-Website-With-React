@@ -2,15 +2,18 @@ import { Link, Outlet } from "react-router-dom"
 import { useContext } from "react"
 
 import {UserContext} from '../../context/userContext.jsx'
+import {CartItemContext} from '../../context/cart-item'
 import {signUserOut} from '../../Utils/firebase/firebaseUtils'
 
 import {ReactComponent as Logo } from "../../assets/crown.svg"
 import './navigation.styles.scss'
 import CartIcon from "../../components/CartIcon/cartIconComponent.jsx"
+import CartDropDown from "../../components/cart-dropdown/cartDropdown.jsx"
 
 const Navigation = ()=>{
     
     const {user} = useContext(UserContext)
+    const {isCartOpen} = useContext(CartItemContext)
 
     return(
     <>
@@ -31,6 +34,10 @@ const Navigation = ()=>{
                 )
             }
              <CartIcon/>
+             {
+                 isCartOpen?<CartDropDown/>:null
+             }
+       
         </div>
        
     </div>

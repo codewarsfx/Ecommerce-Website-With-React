@@ -10,13 +10,16 @@ import {BrowserRouter} from 'react-router-dom'
 import './index.css';
 import UserProvider from './context/userContext';
 import ShopProvider from './context/shopContext';
+import CartItemProvider from './context/cart-item';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
         <UserProvider>
           <ShopProvider>
-          <App />
+              <CartItemProvider>
+                <App />
+            </CartItemProvider>
           </ShopProvider>
         </UserProvider>
     </BrowserRouter>

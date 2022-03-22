@@ -9,8 +9,6 @@ import './shop.style.scss'
 const Shop = ()=>{
     
     const {products}= useContext(ShopContext)
-    console.log(products)
-
     return(
       <div className="products-container">
           {
