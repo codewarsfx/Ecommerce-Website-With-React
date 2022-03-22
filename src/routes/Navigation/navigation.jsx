@@ -6,6 +6,7 @@ import {signUserOut} from '../../Utils/firebase/firebaseUtils'
 
 import {ReactComponent as Logo } from "../../assets/crown.svg"
 import './navigation.styles.scss'
+import CartIcon from "../../components/CartIcon/cartIconComponent.jsx"
 
 const Navigation = ()=>{
     
@@ -29,7 +30,9 @@ const Navigation = ()=>{
                     <Link className="nav-link" to='/signIn'>SIGN IN</Link>
                 )
             }
+             <CartIcon/>
         </div>
+       
     </div>
     <Outlet/>
     </>
