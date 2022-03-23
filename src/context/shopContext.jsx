@@ -1,5 +1,5 @@
-import {createContext,useState} from 'react'
-
+import {createContext,useEffect,useState} from 'react'
+import { getCollectionDataFromFirebase } from '../Utils/firebase/firebaseUtils'
 
 export const ShopContext = createContext({
     products: [],
@@ -11,6 +11,16 @@ const ShopProvider = ({children})=>{
    
     const [products,setProduct] = useState([])
     
+    useEffect(()=>{
+    
+        
+        const getCollection = async ()=>{
+           const data= await getCollectionDataFromFirebase()
+           console.log(data)
+        
+        }
+        getCollection()
+    },[])
 
     
     

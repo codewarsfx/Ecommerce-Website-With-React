@@ -1,6 +1,6 @@
 import {initializeApp} from 'firebase/app'
 import {getAuth, GoogleAuthProvider,signInWithPopup,createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,onAuthStateChanged} from 'firebase/auth'
-import {getFirestore,doc,getDoc,setDoc,collection,writeBatch} from 'firebase/firestore'
+import {getFirestore,doc,getDoc,setDoc,collection,writeBatch,getDocs,query} from 'firebase/firestore'
 
 
 //initialize firebase app
@@ -73,12 +73,13 @@ export const subscribeToFirebaseAuthService = async (callbackFunction)=> {
 
 
 
-// saving collections to the database 
-const batch = writeBatch(firestore)
 
 export const saveCollectionsToDatabase = (collectionName,collectionData)=>{
   const collectionRef = collection(firestore,collectionName)
   // console.log(collectionRef)
+    
+  // saving collections to the database 
+  const batch = writeBatch(firestore)
   collectionData.forEach(item => {
     const docRef = doc(collectionRef,item.title)
     // console.log(item)
@@ -86,6 +87,31 @@ export const saveCollectionsToDatabase = (collectionName,collectionData)=>{
   }) 
   
   batch.commit()
+  
+}
+
+
+export const getCollectionDataFromFirebase = async ()=>{
+  const collectionRef = collection(firestore,'categories')
+  
+  
+  const q = query(collectionRef)
+  
+  const querySnapshot = await getDocs(q)
+  
+  const collectionData=  querySnapshot.docs.reduce((acc,docSnapshot)=>{
+    
+  
+    const {items,title} =   docSnapshot.data()
+    
+    acc[title] = items
+    return acc
+  }
+  ,{})
+  
+
+
+  return collectionData
   
 }
 
