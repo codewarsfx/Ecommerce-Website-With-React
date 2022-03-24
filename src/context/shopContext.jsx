@@ -16,7 +16,7 @@ const ShopProvider = ({children})=>{
         
         const getCollection = async ()=>{
            const data= await getCollectionDataFromFirebase()
-           console.log(data)
+           setProduct(data)
         
         }
         getCollection()
