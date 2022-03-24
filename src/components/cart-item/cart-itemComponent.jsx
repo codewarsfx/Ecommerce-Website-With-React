@@ -1,4 +1,4 @@
-import './cartItem.styles.scss'
+import CartItemComponent from  './cartItem.styles.jsx'
 
 
 const CartItem = ({cartItem})=>{
@@ -6,7 +6,7 @@ const CartItem = ({cartItem})=>{
     const {name,imageUrl,quantity,price} = cartItem
     
     return(
-      <div className='cart-item-container'>
+    <CartItemComponent>
         <img src={imageUrl} alt={`${name}`} />
         <div className='item-details'>
             <span className='name'>{name}</span>
@@ -14,7 +14,7 @@ const CartItem = ({cartItem})=>{
             {quantity} x ${price}
             </span>
         </div>
-    </div>
+    </CartItemComponent>
     )
 }
 

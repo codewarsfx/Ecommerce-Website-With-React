@@ -1,4 +1,8 @@
-.cart-item-container {
+import styled from 'styled-components'
+
+
+
+const CartItemComponent = styled.div`
   width: 100%;
   display: flex;
   height: 80px;
@@ -7,7 +11,6 @@
   img {
     width: 30%;
   }
-
   .item-details {
     width: 70%;
     display: flex;
@@ -19,5 +22,8 @@
     .name {
       font-size: 16px;
     }
-  }
-}
+}  
+`
+
+
+export default CartItemComponent

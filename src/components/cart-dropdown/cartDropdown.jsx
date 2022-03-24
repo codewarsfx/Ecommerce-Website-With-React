@@ -7,7 +7,7 @@ import Button from '../Button/buttonComponent'
 import CartItem from '../cart-item/cart-itemComponent.jsx'
 
 
-import './cartDropdown.styles.scss'
+import {CartDropDownContainer,EmptyMessage,CartItems} from './cartDropdown.styles.jsx'
 
 
 
@@ -21,21 +21,21 @@ const CartDropDown = ()=>{
     }
 
     return(
-        <div className='cart-dropdown-container'>
-            <div className='cart-items'>
+        <CartDropDownContainer>
+            <CartItems>
                 {
                     cartItems ?(
                         
                             cartItems.map(cartItem =><CartItem key={cartItem.id} cartItem={cartItem}/>)
                         
                     ):
-                    <span className='empty-message'>
+                    <EmptyMessage>
                        Your cart is empty
-                    </span>
+                    </EmptyMessage>
                 }
-            </div>
+           </CartItems>
             <Button onClick={navigateToCheckout}>Check Out</Button>
-        </div>
+        </CartDropDownContainer>
     )
     
 }
