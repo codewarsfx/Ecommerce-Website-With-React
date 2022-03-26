@@ -1,7 +1,8 @@
 import { Link, Outlet } from "react-router-dom"
 import { useContext } from "react"
+import { useSelector } from "react-redux"
 
-import {UserContext} from '../../context/userContext.jsx'
+import {createUserSelector} from '../../Redux/user/userSelector'
 import {CartItemContext} from '../../context/cart-item'
 import {signUserOut} from '../../Utils/firebase/firebaseUtils'
 
@@ -14,8 +15,8 @@ import {NavigationContainer,NavLinksContainer,LogoContainer} from './navigation.
 
 const Navigation = ()=> {
     
-    const {user} = useContext(UserContext)
     const {isCartOpen} = useContext(CartItemContext)
+    const user = useSelector(createUserSelector)
 
     return(
     <>
