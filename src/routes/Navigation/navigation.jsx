@@ -6,26 +6,27 @@ import {CartItemContext} from '../../context/cart-item'
 import {signUserOut} from '../../Utils/firebase/firebaseUtils'
 
 import {ReactComponent as Logo } from "../../assets/crown.svg"
-import './navigation.styles.scss'
+
 import CartIcon from "../../components/CartIcon/cartIconComponent.jsx"
 import CartDropDown from "../../components/cart-dropdown/cartDropdown.jsx"
 
-const Navigation = ()=>{
+import {NavigationContainer,NavLinksContainer,LogoContainer} from './navigation.styles.jsx'
+
+const Navigation = ()=> {
     
     const {user} = useContext(UserContext)
     const {isCartOpen} = useContext(CartItemContext)
 
     return(
     <>
-    <div className="navigation">
-        <div className="logo-container">
+    <NavigationContainer>
+        <LogoContainer>
             <Link to={'/'}>
             <Logo/>
             </Link>
-        </div>
-        <div className="nav-links-container">
+        </LogoContainer>
+        <NavLinksContainer>
             <Link className="nav-link" to='/shop'>SHOP</Link>
-            
             {
                 user ?(
                     <span className="nav-link" onClick={signUserOut}>SIGN OUT</span>
@@ -38,9 +39,9 @@ const Navigation = ()=>{
                  isCartOpen?<CartDropDown/>:null
              }
        
-        </div>
+        </NavLinksContainer>
        
-    </div>
+    </NavigationContainer>
     <Outlet/>
     </>
     )  

@@ -1,7 +1,7 @@
 import ProductCard from "../productCard/productCardComponent"
 import { Link } from "react-router-dom"
 
-import './categories.styles.scss'
+import {ProductContainer} from'./categories.styles.jsx'
 
 const Categories = ({title,products})=>{
     
@@ -9,10 +9,10 @@ const Categories = ({title,products})=>{
         <>
         <h2><Link to={`/shop/${title}`}><span>{title.toUpperCase()}</span></Link></h2> 
       
-        <div className="products-container">     
+        <ProductContainer>     
             {products.filter((_,index)=> index < 4).map(product=>(<ProductCard key={product.name} product={product}/>))
             }        
-          </div>
+          </ProductContainer>
             </>
         
     )

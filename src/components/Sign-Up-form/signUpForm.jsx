@@ -1,6 +1,6 @@
 import { useReducer } from "react";
 import {signUpwithUserNameandPassord,createUserDocument} from '../../Utils/firebase/firebaseUtils'
-import Button from "../Button/buttonComponent";
+import Button, { buttonTypes } from "../Button/buttonComponent";
 import Input from "../input/inputComponent";
 import './signUpForm.styles.scss'
 
@@ -78,7 +78,7 @@ const SignUpForm= ()=>{
                 <Input label={'Email'} handleChange={handleChange} name="email" value={email} type="email" required/>
                 <Input label={'password'} handleChange={handleChange} name="password" type="password" value={password} required/>
                 <Input label={'confirmPassword'} handleChange={handleChange} name="confirmPassword" value={confirmPassword} type="password" required/>
-                <Button>Sign Up</Button>
+                <Button buttonType={buttonTypes.base}>Sign Up</Button>
             </form>  
         </div>
     ) 

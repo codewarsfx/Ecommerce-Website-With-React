@@ -4,7 +4,6 @@ import { Routes,Route } from "react-router-dom"
 import CategoriesPreview from '../categories-preview/categories-preview'
 
 
-import './shop.style.scss'
 import CategoryFull from "../category-full/categoryFullComponent"
 
 
@@ -19,5 +18,15 @@ const Shop = ()=>{
     )
     
 }
+
+
+// const ShopContainer = styled.div`
+  
+//   display: grid;
+//   grid-template-columns: repeat(4, 1fr);
+//   column-gap: 10px;
+//   row-gap: 50px;
+
+// `
 
 export default Shop 

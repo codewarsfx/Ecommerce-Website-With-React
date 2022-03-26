@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 
 import {CartItemContext} from '../../context/cart-item'
-import Button from '../Button/buttonComponent'
+import Button,{buttonTypes} from '../Button/buttonComponent'
 import CartItem from '../cart-item/cart-itemComponent.jsx'
 
 
@@ -34,7 +34,7 @@ const CartDropDown = ()=>{
                     </EmptyMessage>
                 }
            </CartItems>
-            <Button onClick={navigateToCheckout}>Check Out</Button>
+            <Button buttonType={buttonTypes.base} onClick={navigateToCheckout}>Check Out</Button>
         </CartDropDownContainer>
     )
     
