@@ -1,14 +1,15 @@
-import { useContext } from "react"
+import { useSelector } from "react-redux"
 import Categories from "../../components/categories/categoriesComponent"
-import { ShopContext } from "../../context/shopContext"
+import {selectShopProductsMap } from "../../Redux/shop/shopSelector"
+
 
 const CategoriesPreview =()=>{
-    const {products} = useContext(ShopContext)
+    const productsMap = useSelector(selectShopProductsMap)
     return(
         <>
         {
-            Object.keys(products).map(title => {
-                const categoriesProduct = products[title]
+            Object.keys(productsMap).map(title => {
+                const categoriesProduct = productsMap[title]
                 return <Categories key={title} title={title} products= {categoriesProduct}/>
             })
         }  

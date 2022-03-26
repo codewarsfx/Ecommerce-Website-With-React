@@ -1,29 +1,28 @@
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import ProductCard from "../../components/productCard/productCardComponent"
-import { ShopContext } from "../../context/shopContext"
+import { selectShopProductsMap } from "../../Redux/shop/shopSelector"
+
 
 const CategoryFull =()=>{
     
-    const [category,setCategory] = useState([])
+    const shopProductsMap = useSelector(selectShopProductsMap)
+    const {title} = useParams()
+    const [category,setCategory] = useState(shopProductsMap[title])
     
-    const {products} = useContext(ShopContext)
-    
-    const params = (useParams()).title
     
     
     useEffect(()=>{
-        
-        const cat = products[params]
-        
-        setCategory(cat)
-    },[params,products])
+
+        setCategory(category[title])
+    },[title,category])
     
 
     
     return(      
         <>
-         <h2>{params.toUpperCase()}</h2>
+         <h2>{title.toUpperCase()}</h2>
             <div className="products-container">     
             {
                 category.map(product=>(<ProductCard key={product.name} product={product}/>))

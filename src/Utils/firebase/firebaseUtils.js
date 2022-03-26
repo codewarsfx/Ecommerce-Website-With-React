@@ -99,15 +99,17 @@ export const getCollectionDataFromFirebase = async ()=>{
   
   const querySnapshot = await getDocs(q)
   
-  const collectionData=  querySnapshot.docs.reduce((acc,docSnapshot)=>{
+  // const collectionData=  querySnapshot.docs.reduce((acc,docSnapshot)=>{
     
   
-    const {items,title} =   docSnapshot.data()
+  //   const {items,title} =   docSnapshot.data()
     
-    acc[title] = items
-    return acc
-  }
-  ,{})
+  //   acc[title] = items
+  //   return acc
+  // }
+  // ,{})
+  
+  const collectionData = querySnapshot.docs.map(docSnapshot=>docSnapshot.data())
   
 
 

@@ -12,8 +12,7 @@ import Navigation from './routes/Navigation/navigation'
 import Authenticate from './routes/Authenticate/authenticateComponent'
 import Checkout from './routes/checkout/checkout';
 import{subscribeToFirebaseAuthService,createUserDocument} from './Utils/firebase/firebaseUtils'
-import {createActionTypes} from './Utils/firebase/createAction'
-import {userTypes} from './Redux/user/userTypes'
+import {setUserAccount} from './Redux/user/userAction'
 
 
 
@@ -27,7 +26,7 @@ function App() {
             if(user){
                 createUserDocument(user)
             }
-            dispatch(createActionTypes(userTypes.SETUSER,user))
+            dispatch(setUserAccount(user))
         })
         return subscribe
     },[dispatch])
