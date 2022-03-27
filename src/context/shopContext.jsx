@@ -1,35 +1,35 @@
-import {createContext,useEffect,useState} from 'react'
-import { getCollectionDataFromFirebase } from '../Utils/firebase/firebaseUtils'
+// import {createContext,useEffect,useState} from 'react'
+// import { getCollectionDataFromFirebase } from '../Utils/firebase/firebaseUtils'
 
-export const ShopContext = createContext({
-    products: [],
-    setProduct:()=>null
-})
+// export const ShopContext = createContext({
+//     products: [],
+//     setProduct:()=>null
+// })
 
 
-const ShopProvider = ({children})=>{
+// const ShopProvider = ({children})=>{
    
-    const [products,setProduct] = useState([])
+//     const [products,setProduct] = useState([])
     
-    useEffect(()=>{
+//     useEffect(()=>{
     
         
-        const getCollection = async ()=>{
-           const data= await getCollectionDataFromFirebase()
-           setProduct(data)
+//         const getCollection = async ()=>{
+//            const data= await getCollectionDataFromFirebase()
+//            setProduct(data)
         
-        }
-        getCollection()
-    },[])
+//         }
+//         getCollection()
+//     },[])
 
     
     
-    const value={products,setProduct}
+//     const value={products,setProduct}
     
-    return(
-        <ShopContext.Provider value={value}>{children}</ShopContext.Provider>
-    )
+//     return(
+//         <ShopContext.Provider value={value}>{children}</ShopContext.Provider>
+//     )
 
-}
+// }
 
-export default ShopProvider
+// export default ShopProvider

@@ -1,9 +1,7 @@
 import { Link, Outlet } from "react-router-dom"
-import { useContext } from "react"
 import { useSelector } from "react-redux"
 
 import {createUserSelector} from '../../Redux/user/userSelector'
-import {CartItemContext} from '../../context/cart-item'
 import {signUserOut} from '../../Utils/firebase/firebaseUtils'
 
 import {ReactComponent as Logo } from "../../assets/crown.svg"
@@ -12,12 +10,12 @@ import CartIcon from "../../components/CartIcon/cartIconComponent.jsx"
 import CartDropDown from "../../components/cart-dropdown/cartDropdown.jsx"
 
 import {NavigationContainer,NavLinksContainer,LogoContainer} from './navigation.styles.jsx'
+import { selecIsCartOpen } from "../../Redux/cart/cartSelector"
 
 const Navigation = ()=> {
-    
-    const {isCartOpen} = useContext(CartItemContext)
-    const user = useSelector(createUserSelector)
 
+    const user = useSelector(createUserSelector)
+    const isCartOpen = useSelector(selecIsCartOpen)
     return(
     <>
     <NavigationContainer>

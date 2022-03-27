@@ -17,6 +17,7 @@ const Shop = ()=>{
         
         const getCollection = async ()=>{
            const data= await getCollectionDataFromFirebase()
+           console.log(setShopData(data))
           dispatch(setShopData(data)) 
         }
         getCollection()
