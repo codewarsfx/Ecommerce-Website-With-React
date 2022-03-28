@@ -9,16 +9,18 @@ import {Provider} from 'react-redux'
 
 
 import './index.css';
-import { store } from './Redux/store';
+import { store,persistedStore  } from './Redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
         <Provider store={store}>
+          <PersistGate persistor={persistedStore}>
     
                 <App />
-        
+        </PersistGate>
         </Provider>
     </BrowserRouter>
   </React.StrictMode>,

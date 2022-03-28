@@ -19,3 +19,6 @@ export const selectShopProductsMap = createSelector([shopProducts],(shopProducts
     return acc
   }
   ,{})))
+  
+  
+export const selectShopProductsLoading = createSelector([shopState],(shop)=>shop.isLoading)

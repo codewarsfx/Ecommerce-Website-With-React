@@ -3,24 +3,17 @@ import { Routes,Route } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { useEffect } from "react"
 
+import {setShopDataAsync} from '../../Redux/shop/shopActions'
 import CategoriesPreview from '../categories-preview/categories-preview'
 import CategoryFull from "../category-full/categoryFullComponent"
-import { getCollectionDataFromFirebase } from '../../Utils/firebase/firebaseUtils'
-import { setShopData } from "../../Redux/shop/shopActions"
 
 
 const Shop = ()=>{
     const dispatch = useDispatch()
   
-     useEffect(()=>{
-    
-        
-        const getCollection = async ()=>{
-           const data= await getCollectionDataFromFirebase()
-           console.log(setShopData(data))
-          dispatch(setShopData(data)) 
-        }
-        getCollection()
+    useEffect(()=>{
+      
+      dispatch(setShopDataAsync())
     },[dispatch])
   
   
