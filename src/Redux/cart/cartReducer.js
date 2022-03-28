@@ -3,7 +3,7 @@ import { cartTypes } from "./cartType"
 
 const initialState = {
     cartItems: [],
-    isCartOpen : true
+    isCartOpen : false
 }
 
 
