@@ -91,8 +91,8 @@ export const saveCollectionsToDatabase = (collectionName,collectionData)=>{
 }
 
 
-export const getCollectionDataFromFirebase = async ()=>{
-  const collectionRef = collection(firestore,'categories')
+export const getCollectionDataFromFirebase = async (collectionName)=>{
+  const collectionRef = collection(firestore,collectionName)
   
   
   const q = query(collectionRef)
