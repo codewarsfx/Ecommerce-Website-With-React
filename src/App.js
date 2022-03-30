@@ -11,25 +11,17 @@ import Shop from './routes/Shop/shop'
 import Navigation from './routes/Navigation/navigation'
 import Authenticate from './routes/Authenticate/authenticateComponent'
 import Checkout from './routes/checkout/checkout';
-import{subscribeToFirebaseAuthService,createUserDocument} from './Utils/firebase/firebaseUtils'
-import {setUserAccount} from './Redux/user/userAction'
 
-
-
+import {creatUserSessionAction} from './Redux/user/userAction'
 
 function App() {
   
   const dispatch= useDispatch()
   
     useEffect(()=>{
-        const subscribe = subscribeToFirebaseAuthService((user)=>{
-            if(user){
-                createUserDocument(user)
-            }
-            dispatch(setUserAccount(user))
-        })
-        return subscribe
+        dispatch(creatUserSessionAction())
     },[dispatch])
+  
   
   return (
     <div className="App">

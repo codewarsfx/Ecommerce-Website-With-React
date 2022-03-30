@@ -1,5 +1,6 @@
 import { useReducer } from "react";
-import {signUpwithUserNameandPassord,createUserDocument} from '../../Utils/firebase/firebaseUtils'
+import { useDispatch } from "react-redux";
+import { createSignUpStart } from "../../Redux/user/userAction";
 import Button, { buttonTypes } from "../Button/buttonComponent";
 import Input from "../input/inputComponent";
 import './signUpForm.styles.scss'
@@ -37,6 +38,8 @@ import './signUpForm.styles.scss'
 const SignUpForm= ()=>{    
     const [state,dispatch] = useReducer(reducer,initialState)
     const {displayName,email,password,confirmPassword} = state
+    
+    const dispatchFunction = useDispatch()
    
     const handleChange =(e)=>{  
         dispatch({
@@ -54,8 +57,7 @@ const SignUpForm= ()=>{
         }
         
         try{
-            const response = await signUpwithUserNameandPassord(email,password)
-            createUserDocument(response.user,{displayName})
+        dispatchFunction(createSignUpStart(email,password,displayName))
             
         }catch(error){
             if(error.code ==='auth/email-already-in-use'){

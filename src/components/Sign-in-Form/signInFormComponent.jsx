@@ -1,9 +1,9 @@
 import { useReducer } from "react";
+import { useDispatch } from "react-redux";
+import { createGoogleSignInStart, creatSignInWIthEmailAndPassword } from "../../Redux/user/userAction";
 
 
 
-
-import {signInWIthGooglePopup,createUserDocument,signInUserWithEmailAndPassword} from "../../Utils/firebase/firebaseUtils"
 import Button,{buttonTypes} from "../Button/buttonComponent";
 import Input from "../input/inputComponent";
 import './signinForm.styles.scss'
@@ -32,6 +32,7 @@ import './signinForm.styles.scss'
 
 const SignInForm= ()=>{   
     
+    const dispatchFunction = useDispatch()
     //sate management using reducer
     const [state,dispatch] = useReducer(reducer,initialState)
     const {email,password} = state
@@ -52,7 +53,7 @@ const SignInForm= ()=>{
             return
         }
         try{
-            await signInUserWithEmailAndPassword(email,password)
+            dispatchFunction(creatSignInWIthEmailAndPassword(email,password))
         }catch(error){
         let alertMessage=''
          switch (error.code) {
@@ -78,8 +79,7 @@ const SignInForm= ()=>{
     const SignInUserWithGoogle =async (e)=>{
 
       try{
-        const response= await signInWIthGooglePopup()
-         createUserDocument(response.user)  
+        dispatchFunction(createGoogleSignInStart())
       }
       catch(error){
           let alertMessage=''

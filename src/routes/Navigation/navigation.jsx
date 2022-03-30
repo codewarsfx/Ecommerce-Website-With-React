@@ -1,8 +1,8 @@
 import { Link, Outlet } from "react-router-dom"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 import {createUserSelector} from '../../Redux/user/userSelector'
-import {signUserOut} from '../../Utils/firebase/firebaseUtils'
+
 
 import {ReactComponent as Logo } from "../../assets/crown.svg"
 
@@ -11,11 +11,17 @@ import CartDropDown from "../../components/cart-dropdown/cartDropdown.jsx"
 
 import {NavigationContainer,NavLinksContainer,LogoContainer} from './navigation.styles.jsx'
 import { selecIsCartOpen } from "../../Redux/cart/cartSelector"
+import { createUserSignOutStart } from "../../Redux/user/userAction"
 
 const Navigation = ()=> {
-
+    const dispatch = useDispatch()
     const user = useSelector(createUserSelector)
     const isCartOpen = useSelector(selecIsCartOpen)
+    
+    const signUserOut = ()=>{
+        dispatch(createUserSignOutStart())
+    }
+    
     return(
     <>
     <NavigationContainer>

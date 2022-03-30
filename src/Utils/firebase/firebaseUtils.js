@@ -60,17 +60,27 @@ export const createUserDocument = async (userAccount,otherOptions)=>{
       ...otherOptions
     })
   }
-  return userRef
+  return userSnapshot
 }
 
 export const signUserOut = async ()=>{
   await signOut(auth)
 }
 
-export const subscribeToFirebaseAuthService = async (callbackFunction)=> {
- return await onAuthStateChanged(auth,callbackFunction)
-}
+// export const subscribeToFirebaseAuthService = async (callbackFunction)=> {
+//  return await onAuthStateChanged(auth,callbackFunction)
+// }
 
+
+export const subscribeToFirebaseAuthService= () =>(new Promise((resolve,reject) =>{
+  
+  const subscribe= onAuthStateChanged(auth,(user)=>{
+    if(!user) return 
+    subscribe() 
+    resolve(user)
+   },reject) 
+}
+))
 
 
 
