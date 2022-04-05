@@ -2,6 +2,7 @@
 
 import { useSelector } from 'react-redux'
 import CheckoutItem from '../../components/checkout-item/checkoutItemComponent'
+import StripeForm from '../../components/stripe-form/stripeFormCOmponent'
 import { selectCartItems, selectCartItemsTotal } from '../../Redux/cart/cartSelector'
 
 import { Total,CheckoutHeader,CheckoutContainer} from './checkout.styles.jsx'
@@ -13,6 +14,7 @@ const Checkout = ()=>{
     
    
    return(
+     <>
       <CheckoutContainer>
       <CheckoutHeader>
         <div className='header-block'>
@@ -34,7 +36,10 @@ const Checkout = ()=>{
           cartItems.map(cartItem=><CheckoutItem key={cartItem.id} cartItem={cartItem}/>)
       }
       <Total>TOTAL: {total}</Total>
+    <StripeForm/>
     </CheckoutContainer>
+  
+    </>
    )
     
 }
